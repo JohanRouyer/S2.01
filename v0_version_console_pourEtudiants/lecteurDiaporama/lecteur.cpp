@@ -7,11 +7,12 @@ Lecteur::Lecteur()
 
 void Lecteur::avancer()
 {
-
+    _posImageCourante = _posImageCourante % nbImages()+1;
 }
 
 void Lecteur::reculer()
 {
+    _posImageCourante = _posImageCourante % nbImages()-1;
 }
 
 void Lecteur::changerDiaporama(unsigned int pNumDiaporama)
@@ -74,6 +75,10 @@ void Lecteur::viderDiaporama()
 
 void Lecteur::afficher()
 {
+    if (numDiaporamaCourant() == 0){
+        cout << " vide";
+    }
+
     /* affiche les information sur le lecteur :
      * 1) vide (si num. de diaporama = 0) OU BIEN  numéro de diaporama affiché
      * 2) Si un diaporama courant est chargé (num. de diaporama > 0), affiche l'image courante OU BIEN 'diaporama vide'
