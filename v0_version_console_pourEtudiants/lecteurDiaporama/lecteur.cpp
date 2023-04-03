@@ -76,8 +76,20 @@ void Lecteur::viderDiaporama()
 void Lecteur::afficher()
 {
     if (numDiaporamaCourant() == 0){
-        cout << " vide";
+        cout << "lecteur vide";
     }
+    else {
+        cout <<  "Diaporama num. " << numDiaporamaCourant();
+    }
+    cout << endl;
+
+    if (numDiaporamaCourant() > 0){
+        cout << "Image num. " << imageCourante();
+    }
+    else if (nbImages()==0){
+        cout << "Diaporama vide";
+    }
+    cout << endl;
 
     /* affiche les information sur le lecteur :
      * 1) vide (si num. de diaporama = 0) OU BIEN  numéro de diaporama affiché
@@ -97,5 +109,5 @@ Image *Lecteur::imageCourante()
 
 unsigned int Lecteur::numDiaporamaCourant()
 {
-    return 0;
+    return _numDiaporamaCourant ;
 }
