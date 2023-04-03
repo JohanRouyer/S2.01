@@ -48,7 +48,22 @@ void Lecteur::chargerDiaporama()
 
      // trier le contenu du diaporama par ordre croissant selon le rang de l'image dans le diaporama
 	 // A FAIRE
-	 
+    unsigned int ici = nbImages() - 1;
+       for (unsigned short i = 0; i < ici; i++)
+       {
+           Image* copieImageDiapo;
+           for (unsigned int i = 0; i < ici; i++)
+           {
+
+                if (_diaporama[i] > _diaporama[i + 1])
+                {
+                    copieImageDiapo = _diaporama[i];
+                    _diaporama[i] = _diaporama[i + 1];
+                    _diaporama[i + 1] = copieImageDiapo;
+                }
+            }
+       }
+
      _posImageCourante = 0;
 
      cout << "Diaporama num. " << numDiaporamaCourant() << " selectionne. " << endl;
@@ -84,7 +99,7 @@ void Lecteur::afficher()
     cout << endl;
 
     if (numDiaporamaCourant() > 0){
-        cout << "Image num. " << imageCourante();
+        cout << "Image courante. " << imageCourante();
     }
     else if (nbImages()==0){
         cout << "Diaporama vide";
