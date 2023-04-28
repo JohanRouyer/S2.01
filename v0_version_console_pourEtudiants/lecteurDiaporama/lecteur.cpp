@@ -1,4 +1,5 @@
 #include "lecteur.h"
+#include <algorithm>
 
 Lecteur::Lecteur()
 {
@@ -7,12 +8,20 @@ Lecteur::Lecteur()
 
 void Lecteur::avancer()
 {
-    _posImageCourante = _posImageCourante % nbImages()+1;
+    if (nbImages() > 0)
+    {
+        _posImageCourante++;
+        _posImageCourante = _posImageCourante % nbImages(); // incrémente la position, modulo le nombre d'images
+    }
 }
 
 void Lecteur::reculer()
 {
-    _posImageCourante = _posImageCourante % nbImages()-1;
+    if (nbImages() > 0)
+    {
+        _posImageCourante--;
+        _posImageCourante = _posImageCourante % nbImages(); // décrémente la position, modulo le nombre d'images
+    }
 }
 
 void Lecteur::changerDiaporama(unsigned int pNumDiaporama)
@@ -47,22 +56,18 @@ void Lecteur::chargerDiaporama()
 
 
      // trier le contenu du diaporama par ordre croissant selon le rang de l'image dans le diaporama
-	 // A FAIRE
-    unsigned int ici = nbImages() - 1;
-       for (unsigned short i = 0; i < ici; i++)
-       {
-           Image* copieImageDiapo;
-           for (unsigned int i = 0; i < ici; i++)
-           {
+     // A FAIRE
 
-                if (_diaporama[i] > _diaporama[i + 1])
-                {
-                    copieImageDiapo = _diaporama[i];
-                    _diaporama[i] = _diaporama[i + 1];
-                    _diaporama[i + 1] = copieImageDiapo;
-                }
+    int tailleDiapo = _diaporama.size();
+    for (int i = 0; i < tailleDiapo-1; i++) {
+        for (int j = 0; j < tailleDiapo-i-1; j++) {
+            if (_diaporama[j]->getRang() > _diaporama[j+1]->getRang()) {
+                Image* ImageTemp = _diaporama[j];
+                _diaporama[j] = _diaporama[j+1];
+                _diaporama[j+1] = ImageTemp;
             }
-       }
+        }
+    }
 
      _posImageCourante = 0;
 
@@ -90,26 +95,27 @@ void Lecteur::viderDiaporama()
 
 void Lecteur::afficher()
 {
-    if (numDiaporamaCourant() == 0){
-        cout << "lecteur vide";
-    }
-    else {
-        cout <<  "Diaporama num. " << numDiaporamaCourant();
-    }
-    cout << endl;
-
-    if (numDiaporamaCourant() > 0){
-        cout << "Image courante. " << imageCourante();
-    }
-    else if (nbImages()==0){
-        cout << "Diaporama vide";
-    }
-    cout << endl;
-
     /* affiche les information sur le lecteur :
-     * 1) vide (si num. de diaporama = 0) OU BIEN  numéro de diaporama affiché
+     * 1) vide (si num. de diaporama = 0) OU BIEN numéro de diaporama affiché
      * 2) Si un diaporama courant est chargé (num. de diaporama > 0), affiche l'image courante OU BIEN 'diaporama vide'
      *     si ce diaporama n'a aucun image */
+    if (numDiaporamaCourant() == 0){
+        cout << "Lecteur vide" << endl;
+    }
+    else
+    {
+        if (nbImages() > 0)
+        {
+            cout << "Image courante : " << endl;
+            _diaporama[_posImageCourante]->afficher();
+        }
+        else
+        {
+            cout << "Diaporama vide" << endl;
+
+        }
+    }
+
 }
 
 unsigned int Lecteur::nbImages()
@@ -119,10 +125,17 @@ unsigned int Lecteur::nbImages()
 
 Image *Lecteur::imageCourante()
 {
-    return nullptr;
+
+if (numDiaporamaCourant() == 0 || nbImages() == 0) {
+return nullptr; // retourne un pointeur nul s'il n'y a pas d'image ou que le lecteur est vide
+}
+else {
+return _diaporama[_posImageCourante]; // retourne un pointeur vers l'image courante
 }
 
-unsigned int Lecteur::numDiaporamaCourant()
+}
+
+unsigned int Lecteur::numDiaporamaCourant() // retourne le numéro du diaporama en cours
 {
-    return _numDiaporamaCourant ;
+    return _numDiaporamaCourant;
 }
