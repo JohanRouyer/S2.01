@@ -1,5 +1,5 @@
 #include "lecteurvue.h"
-#include "ui_mainwindow.h"
+#include "ui_lecteurvue.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
