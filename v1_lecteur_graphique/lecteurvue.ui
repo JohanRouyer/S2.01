@@ -25,14 +25,14 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QLabel" name="labelIndicateur">
+      <widget class="QLabel" name="labelChangementMode">
        <property name="font">
         <font>
          <pointsize>12</pointsize>
         </font>
        </property>
        <property name="text">
-        <string>Indicateur de mode :</string>
+        <string>Changer de mode :</string>
        </property>
       </widget>
      </item>
@@ -214,10 +214,10 @@
    <widget class="QLabel" name="labelValeurImage">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>130</y>
-      <width>471</width>
-      <height>341</height>
+      <x>20</x>
+      <y>120</y>
+      <width>481</width>
+      <height>351</height>
      </rect>
     </property>
     <property name="font">
@@ -257,7 +257,7 @@
     </property>
     <addaction name="actionCharger_diaporama"/>
     <addaction name="actionEnlever_diaporama"/>
-    <addaction name="actionVitesse_de_d_filement"/>
+    <addaction name="actionVitesse_de_defilement"/>
    </widget>
    <widget class="QMenu" name="menuAide">
     <property name="title">
@@ -285,7 +285,7 @@
     <string>Enlever diaporama</string>
    </property>
   </action>
-  <action name="actionVitesse_de_d_filement">
+  <action name="actionVitesse_de_defilement">
    <property name="text">
     <string>Vitesse de défilement</string>
    </property>

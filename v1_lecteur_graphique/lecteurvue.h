@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <QWidget>
-#include <QPushButton>
 #include <QDebug>
 
 QT_BEGIN_NAMESPACE
@@ -17,13 +16,22 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    QPushButton *Manuel;
 
 private:
     Ui::MainWindow *ui;
 
 private slots:
-    void indiquerMode();
+    void indiquerModeBtnManuel();
+    void indiquerModeBtnAuto();
+    void indiquerModeBtnGauche();
+    void indiquerModeBtnDroite();
+    void lancerDiaporama();
+    void arreterDiaporama();
+    void quitterDiaporama();
+    void chargerDiaporama();
+    void enleverDiaporama();
+    void vitesse();
+    void aPropos();
 
 };
 #endif // LECTEURVUE_H
