@@ -208,7 +208,7 @@
      </font>
     </property>
     <property name="text">
-     <string>1/3</string>
+     <string>0</string>
     </property>
    </widget>
    <widget class="QLabel" name="labelValeurImage">
@@ -233,6 +233,42 @@
     </property>
     <property name="scaledContents">
      <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelNbImages">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>450</y>
+      <width>49</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelSlash">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>450</y>
+      <width>49</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>/</string>
     </property>
    </widget>
   </widget>
