@@ -1,5 +1,6 @@
 #include "lecteurvue.h"
 #include "ui_lecteurvue.h"
+#include <QPixmap>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -24,7 +25,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->btnDroite,SIGNAL(clicked()),this,SLOT(avancer()));
     connect(ui->btnArreter,SIGNAL(clicked()),this,SLOT(arreterDiaporama()));
 
-    ui->btnArreter->setDown(false);
+    ui->btnArreter->setEnabled(false);
+    ui->btnLancer->setEnabled(false);
+    ui->btnAuto->setEnabled(false);
+    ui->btnManuel->setEnabled(false);
+    ui->btnDroite->setEnabled(false);
+    ui->btnGauche->setEnabled(false);
+
+    ui->labelValeurImage->setPixmap(QPixmap("./cartesDisney/Disney_tapis.png"));
 
 
 }
@@ -58,8 +66,8 @@ void MainWindow::indiquerModeBtnAuto()
 
     qDebug() << "Mode Auto activé";
     ui->btnAuto->setVisible(false);
-    ui->btnDroite->setVisible(false);
-    ui->btnGauche->setVisible(false);
+    ui->btnDroite->setEnabled(false);
+    ui->btnGauche->setEnabled(false);
     ui->btnManuel->setVisible(true);
 }
 
@@ -68,18 +76,30 @@ void MainWindow::indiquerModeBtnManuel()
     qDebug() << "Mode Manuel activé";
     ui->btnManuel->setVisible(false);
     ui->btnAuto->setVisible(true);
-    ui->btnDroite->setVisible(true);
-    ui->btnGauche->setVisible(true);
+    ui->btnDroite->setEnabled(true);
+    ui->btnGauche->setEnabled(true);
 }
 
 void MainWindow::lancerDiaporama()
 {
     qDebug() << "Lancement du diaporama";
+    ui->btnArreter->setEnabled(true);
+    ui->btnLancer->setEnabled(false);
+
+    ui->btnDroite->setEnabled(true);
+    ui->btnGauche->setEnabled(true);
 }
 
 void MainWindow::arreterDiaporama()
 {
     qDebug() << "Arret du diaporama";
+    ui->btnArreter->setEnabled(false);
+    ui->btnLancer->setEnabled(true);
+
+    ui->btnDroite->setEnabled(false);
+    ui->btnGauche->setEnabled(false);
+
+
 }
 
 void MainWindow::chargerDiaporama()
@@ -119,6 +139,11 @@ void MainWindow::chargerDiaporama()
          cout << nbImages() << " images chargees dans le diaporama" << endl;
          ui->labelNbImages->setText(QString::number(nbImages()));
          ui->labelNumeroPage->setText((QString::number(_posImageCourante+1)));
+
+         ui->btnLancer->setEnabled(true);
+         ui->btnAuto->setEnabled(true);
+         ui->btnManuel->setEnabled(true);
+
 }
 
 void MainWindow::viderDiaporama()
@@ -144,6 +169,12 @@ void MainWindow::enleverDiaporama()
     viderDiaporama();
     ui->labelNbImages->setText(QString::number(nbImages()));
     ui->labelNumeroPage->setText((QString::number(_posImageCourante)));
+    ui->btnArreter->setEnabled(false);
+    ui->btnLancer->setEnabled(false);
+    ui->btnAuto->setEnabled(false);
+    ui->btnManuel->setEnabled(false);
+    ui->btnDroite->setEnabled(false);
+    ui->btnGauche->setEnabled(false);
 }
 
 void MainWindow::vitesse()

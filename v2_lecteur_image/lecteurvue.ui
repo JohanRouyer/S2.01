@@ -228,6 +228,9 @@
     <property name="text">
      <string/>
     </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
     <property name="pixmap">
      <pixmap>cartesDisney/Disney_0.png</pixmap>
     </property>
