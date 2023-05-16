@@ -157,7 +157,7 @@ void MainWindow::aPropos()
     int reponse = maDlg.exec();
     if(reponse == QDialog::Accepted)
     {
-        qDebug() << "fermetrures"<< Qt::endl;
+        qDebug() << "fermetrure"<< Qt::endl;
     }
 }
 
