@@ -56,7 +56,6 @@ void Lecteur::chargerDiaporama()
 
 
      // trier le contenu du diaporama par ordre croissant selon le rang de l'image dans le diaporama
-     // A FAIRE
 
     int tailleDiapo = _diaporama.size();
     for (int i = 0; i < tailleDiapo-1; i++) {
