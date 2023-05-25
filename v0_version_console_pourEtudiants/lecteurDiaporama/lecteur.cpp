@@ -76,17 +76,15 @@ void Lecteur::chargerDiaporama()
 }
 
 void Lecteur::viderDiaporama()
-{
+{   // Vérifier s'il y a des images dans le diaporama
     if (nbImages () > 0)
     {
-        unsigned int taille = nbImages();
+        unsigned int taille = nbImages(); // Obtenir le nombre actuel d'images
         for (unsigned int i = 0; i < taille ; i++)
         {
-            _diaporama.pop_back(); /* Removes the last element in the vector,
-                                      effectively reducing the container size by one.
-                                      AND deletes the removed element */
+            _diaporama.pop_back();  // Supprimer la dernière image du diaporama
         }
-     _posImageCourante = 0;
+     _posImageCourante = 0; // Réinitialiser la position de l'image courante au début
     }
     cout << nbImages() << " images restantes dans le diaporama." << endl;
 
