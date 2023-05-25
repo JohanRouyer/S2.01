@@ -216,7 +216,7 @@
      <rect>
       <x>20</x>
       <y>120</y>
-      <width>481</width>
+      <width>471</width>
       <height>351</height>
      </rect>
     </property>
@@ -232,7 +232,7 @@
      <enum>Qt::AutoText</enum>
     </property>
     <property name="pixmap">
-     <pixmap>cartesDisney/Disney_0.png</pixmap>
+     <pixmap resource="img.qrc">:/diapo/cartesDisney/Disney_6.gif</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -281,7 +281,7 @@
      <x>0</x>
      <y>0</y>
      <width>793</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFichier">
@@ -335,6 +335,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="img.qrc"/>
+ </resources>
  <connections/>
 </ui>

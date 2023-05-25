@@ -32,7 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->btnDroite->setEnabled(false);
     ui->btnGauche->setEnabled(false);
 
-    ui->labelValeurImage->setPixmap(QPixmap("./cartesDisney/Disney_tapis.png"));
+
 
 
 }
