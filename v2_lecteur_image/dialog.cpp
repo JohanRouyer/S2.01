@@ -5,8 +5,9 @@ Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog)
 {
-    connect(ui->btnDialogOk, SIGNAL(clicked()), this, SLOT(accept()));
+
     ui->setupUi(this);
+    connect(ui->btnDialogOk, &QPushButton::clicked, this, &Dialog::close);
 }
 
 Dialog::~Dialog()

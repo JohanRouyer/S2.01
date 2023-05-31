@@ -17,15 +17,13 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_Dialog
 {
 public:
-    QPushButton *btnDialogOk;
-    QWidget *verticalLayoutWidget;
+    QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
     QLabel *labelVersionApp;
     QHBoxLayout *horizontalLayout;
@@ -39,22 +37,18 @@ public:
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *horizontalSpacer_3;
     QLabel *labelValeurAuteurs;
+    QPushButton *btnDialogOk;
 
     void setupUi(QDialog *Dialog)
     {
         if (Dialog->objectName().isEmpty())
             Dialog->setObjectName(QString::fromUtf8("Dialog"));
         Dialog->resize(400, 300);
-        btnDialogOk = new QPushButton(Dialog);
-        btnDialogOk->setObjectName(QString::fromUtf8("btnDialogOk"));
-        btnDialogOk->setGeometry(QRect(160, 250, 75, 24));
-        verticalLayoutWidget = new QWidget(Dialog);
-        verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(10, 20, 160, 211));
-        verticalLayout = new QVBoxLayout(verticalLayoutWidget);
+        verticalLayout_2 = new QVBoxLayout(Dialog);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
-        labelVersionApp = new QLabel(verticalLayoutWidget);
+        labelVersionApp = new QLabel(Dialog);
         labelVersionApp->setObjectName(QString::fromUtf8("labelVersionApp"));
 
         verticalLayout->addWidget(labelVersionApp);
@@ -65,7 +59,7 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer);
 
-        labelValeurVersionApp = new QLabel(verticalLayoutWidget);
+        labelValeurVersionApp = new QLabel(Dialog);
         labelValeurVersionApp->setObjectName(QString::fromUtf8("labelValeurVersionApp"));
 
         horizontalLayout->addWidget(labelValeurVersionApp);
@@ -73,7 +67,7 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
-        labelDateCreation = new QLabel(verticalLayoutWidget);
+        labelDateCreation = new QLabel(Dialog);
         labelDateCreation->setObjectName(QString::fromUtf8("labelDateCreation"));
 
         verticalLayout->addWidget(labelDateCreation);
@@ -84,7 +78,7 @@ public:
 
         horizontalLayout_2->addItem(horizontalSpacer_2);
 
-        labelValeurDateCreation = new QLabel(verticalLayoutWidget);
+        labelValeurDateCreation = new QLabel(Dialog);
         labelValeurDateCreation->setObjectName(QString::fromUtf8("labelValeurDateCreation"));
 
         horizontalLayout_2->addWidget(labelValeurDateCreation);
@@ -92,7 +86,7 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_2);
 
-        labelAuteurs = new QLabel(verticalLayoutWidget);
+        labelAuteurs = new QLabel(Dialog);
         labelAuteurs->setObjectName(QString::fromUtf8("labelAuteurs"));
 
         verticalLayout->addWidget(labelAuteurs);
@@ -103,13 +97,21 @@ public:
 
         horizontalLayout_3->addItem(horizontalSpacer_3);
 
-        labelValeurAuteurs = new QLabel(verticalLayoutWidget);
+        labelValeurAuteurs = new QLabel(Dialog);
         labelValeurAuteurs->setObjectName(QString::fromUtf8("labelValeurAuteurs"));
 
         horizontalLayout_3->addWidget(labelValeurAuteurs);
 
 
         verticalLayout->addLayout(horizontalLayout_3);
+
+
+        verticalLayout_2->addLayout(verticalLayout);
+
+        btnDialogOk = new QPushButton(Dialog);
+        btnDialogOk->setObjectName(QString::fromUtf8("btnDialogOk"));
+
+        verticalLayout_2->addWidget(btnDialogOk);
 
 
         retranslateUi(Dialog);
@@ -120,13 +122,13 @@ public:
     void retranslateUi(QDialog *Dialog)
     {
         Dialog->setWindowTitle(QCoreApplication::translate("Dialog", "Dialog", nullptr));
-        btnDialogOk->setText(QCoreApplication::translate("Dialog", "Ok", nullptr));
         labelVersionApp->setText(QCoreApplication::translate("Dialog", "Version de l'application", nullptr));
-        labelValeurVersionApp->setText(QCoreApplication::translate("Dialog", "TextLabel", nullptr));
+        labelValeurVersionApp->setText(QCoreApplication::translate("Dialog", "V2.0", nullptr));
         labelDateCreation->setText(QCoreApplication::translate("Dialog", "Date de cr\303\251ation", nullptr));
-        labelValeurDateCreation->setText(QCoreApplication::translate("Dialog", "TextLabel", nullptr));
+        labelValeurDateCreation->setText(QCoreApplication::translate("Dialog", "15/05/2023", nullptr));
         labelAuteurs->setText(QCoreApplication::translate("Dialog", "Auteurs", nullptr));
-        labelValeurAuteurs->setText(QCoreApplication::translate("Dialog", "TextLabel", nullptr));
+        labelValeurAuteurs->setText(QCoreApplication::translate("Dialog", "ROUYER, ETCHEGARRAY, MUSICA", nullptr));
+        btnDialogOk->setText(QCoreApplication::translate("Dialog", "Ok", nullptr));
     } // retranslateUi
 
 };
