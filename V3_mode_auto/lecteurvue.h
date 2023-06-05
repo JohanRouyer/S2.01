@@ -32,8 +32,8 @@ public slots:
 private:
     Ui::LecteurVue *ui;
     const char* auteurs = "ROUYER, MUZICA, ETCHEGARAY"; // noms des auteurs
-    const char* date = "15/05/2023"; //date de création de la version du logiciel
-    const char* version = "V2"; // la version du logiciel
+    const char* date = "1/06/2023"; //date de création de la version du logiciel
+    const char* version = "V3"; // la version du logiciel
     Lecteur _lecteur;
     QLabel *mode;
     QLabel *rang;
