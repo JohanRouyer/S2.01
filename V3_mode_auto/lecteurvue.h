@@ -1,6 +1,7 @@
 #ifndef LECTEURVUE_H
 #define LECTEURVUE_H
 
+#include <QTimer>
 #include <QMessageBox>
 #include "lecteur.h"
 #include <QMainWindow>
@@ -25,8 +26,9 @@ public slots:
     void arreterDiapo(); // Slot pour passer le diaporama en mode manuel
     void apropos(); // Slot pour ouvrir une boîte de dialogue contenant les informations sur le diaporama
     void afficherImageCourante(); // Slot pour afficher l'image courante du lecteur sur l'interface graphique
-    void majStatusBar(bool); // Slot pour mettre à jour la barre de statut de l'application
-
+    void majStatusBar(); // Slot pour mettre à jour la barre de statut de l'application
+    void ClicSuivant();// Slot pour afficher l'image suivante dans le diaporama lorsque un clic est effectuer sur le btn suivant.
+    void ClicPrecedent(); // Slot pour afficher l'image precedente dans le diaporama lorsque un clic est effectuer sur le btn precedent.
 private:
     Ui::LecteurVue *ui;
     const char* auteurs = "ROUYER, MUZICA, ETCHEGARAY"; // noms des auteurs
@@ -35,5 +37,12 @@ private:
     Lecteur _lecteur;
     QLabel *mode;
     QLabel *rang;
+
+    QTimer timer;
+    enum EtatLecteur {manuel, automatique, nonCharger};
+    EtatLecteur etat = nonCharger;
+
+
+
 };
 #endif // LECTEURVUE_H

@@ -14,7 +14,7 @@ LecteurVue::LecteurVue(QWidget *parent)
 
     mode = new QLabel();
     rang = new QLabel();
-    majStatusBar(false);
+    majStatusBar();
     mode->setAlignment(Qt::AlignLeft);
     rang->setAlignment(Qt::AlignRight);
     ui->statusbar->addWidget(mode, 1);
@@ -24,12 +24,15 @@ LecteurVue::LecteurVue(QWidget *parent)
     connect(ui->btnChargerDiapo, SIGNAL(triggered()), this, SLOT(chargerDiaporama()));
     connect(ui->btnArreter, SIGNAL(clicked()), this, SLOT(arreterDiapo()));
     connect(ui->btnLancer, SIGNAL(clicked()), this, SLOT(demarrerDiapo()));
-    connect(ui->btnSuivant, SIGNAL(clicked()), this, SLOT(suivant()));
-    connect(ui->btnPrecedent, SIGNAL(clicked()), this, SLOT(precedent()));
+    connect(ui->btnSuivant, SIGNAL(clicked()), this, SLOT(ClicSuivant()));
+    connect(ui->btnPrecedent, SIGNAL(clicked()), this, SLOT(ClicPrecedent()));
     connect(ui->apropos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(ui->btnQuitter, SIGNAL(triggered()), QCoreApplication::instance(), SLOT(quit()), Qt::QueuedConnection);
     // Établissement des connexions entre les signaux et les slots
+    // timer
+    timer.setInterval(2000);
 
+    connect(&timer, SIGNAL(timeout()), this, SLOT(suivant()));
 }
 
 LecteurVue::~LecteurVue() {
@@ -38,43 +41,68 @@ LecteurVue::~LecteurVue() {
 }
 
 void LecteurVue::demarrerDiapo() {
-    qDebug() << "début du diaporama" << Qt::endl;
-                                            ui->btnArreter->setEnabled(true);
-    ui->btnLancer->setEnabled(false);
-    ui->btnSuivant->setEnabled(false);
-    ui->btnPrecedent->setEnabled(false);
-    majStatusBar(true);
-    // Démarre le diaporama en désactivant certains boutons et en mettant à jour la barre de statut
+    ui->btnArreter->setEnabled(true);
+    while (_lecteur.imageCourante()->getRang() != 1)
+    {
+        suivant();
+    }
+    etat = automatique;
+    timer.start();
+    majStatusBar();
+    // Démarre le diaporama en mode auto et en mettant à jour la barre de statut
 }
 
 void LecteurVue::arreterDiapo() {
-    qDebug() << "Arrêt du diaporama" << Qt::endl;
-    ui->btnLancer->setEnabled(true);
     ui->btnArreter->setEnabled(false);
-        // Arrête le diaporama en réactivant les boutons correspondants
+    etat = manuel;
+    timer.stop();
+    majStatusBar();
+        // Arrête le diaporama automatique et le timer
 }
 
 void LecteurVue::chargerDiaporama() {
-    _lecteur.changerDiaporama(1);
-    afficherImageCourante();
-    majStatusBar(true);
+    ui->btnLancer->setEnabled(true);
     ui->btnSuivant->setEnabled(true);
     ui->btnPrecedent->setEnabled(true);
-    ui->btnLancer->setEnabled(true);
+    _lecteur.changerDiaporama(1);
+    afficherImageCourante();
+    etat = manuel;
+    majStatusBar();
     // Charge le diaporama, affiche l'image courante, met à jour la barre de statut et active les boutons nécessaires
 }
 
+void LecteurVue::ClicSuivant() {
+    if (etat == manuel) {
+        _lecteur.avancer();
+        afficherImageCourante();
+        majStatusBar();
+
+    } else {
+        arreterDiapo();
+    }
+}
+
 void LecteurVue::suivant() {
+
     _lecteur.avancer();
     afficherImageCourante();
-    majStatusBar(true);
+    majStatusBar();
     // Passe à l'image suivante, l'affiche et met à jour la barre de statut
 }
 
+void LecteurVue::ClicPrecedent() {
+    if (etat == manuel) {
+        _lecteur.reculer();
+        afficherImageCourante();
+        majStatusBar();
+    } else {
+        arreterDiapo();
+    }
+}
 void LecteurVue::precedent() {
     _lecteur.reculer();
     afficherImageCourante();
-    majStatusBar(true);
+    majStatusBar();
     // Passe à l'image précédente, l'affiche et met à jour la barre de statut
 }
 
@@ -89,16 +117,20 @@ void LecteurVue::afficherImageCourante() {
     // Affiche les informations de l'image courante dans l'interface utilisateur
 }
 
-void LecteurVue::majStatusBar(bool estCharge) {
-    if (!estCharge) {
-        mode->setText("! chargé le diaporama !");
+void LecteurVue::majStatusBar() {
+    if (etat == nonCharger) {
+        mode->setText("Mode: Non chargé");
             rang->setText("");
-    } else {
+    } else if (etat == manuel) {
         mode->setText("Mode: Manuel");
-        rang->setText("Rang: "  + QString::number(_lecteur.imageCourante()->getRang()) + "/" + QString::number(_lecteur.nbImages()));
+        rang->setText("Rang: " + QString::number(_lecteur.imageCourante()->getRang()) + "/" + QString::number(_lecteur.nbImages()));
+    } else {
+        mode->setText("Mode : Automatique");
+        rang->setText("Rang: " + QString::number(_lecteur.imageCourante()->getRang()) + "/" + QString::number(_lecteur.nbImages()));
     }
-    // Met à jour la barre de statut en fonction de l'état du diaporama (chargé ou non chargé)
 }
+
+    // Met à jour la barre de statut en fonction de l'état du diaporama (chargé ou non chargé)
 
 void LecteurVue::apropos() {
     QString message = "Les auteurs : "+ QString::fromUtf8(auteurs) +"\n" +"\n";
