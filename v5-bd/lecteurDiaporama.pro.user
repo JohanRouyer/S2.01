@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 10.0.0, 2023-06-07T09:59:19. -->
+<!-- Written by QtCreator 10.0.0, 2023-06-13T09:05:23. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -154,9 +154,8 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">lecteurDiaporama2</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/johan/OneDrive/Bureau/Nouveau dossier/v4/lecteurDiaporama.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/johan/OneDrive/Bureau/Nouveau dossier/v4/lecteurDiaporama.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/johan/OneDrive/Bureau/Nouveau dossier/v5-bd/lecteurDiaporama.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/johan/OneDrive/Bureau/Nouveau dossier/v5-bd/lecteurDiaporama.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>

@@ -1,0 +1,10 @@
+Nom collection : Disney
+Type des fichiers image : gif
+Dimensions images :
+-hauteur = 128 pixels
+-largeur = 128 pixels
+Nombre total d'images : 54, qui serviront à fabriquer 53 cartes différentes.
+
+Disney_0.gif est l'image correspondant au DOS de toutes ces cartes
+Les images 'utiles', c'est à dire hors 'dos' sont numértées de 1 à 53.
+L'image Disney_tapis.png est l'image utilisée pour représenter une case de plateau vide.
